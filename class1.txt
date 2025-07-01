@@ -1,160 +1,153 @@
-1. Single-thread vs Multi-thread
-Single-threaded: One task at a time (default in JS).
+✅ 1. Single-thread vs Multi-thread
+Single-threaded: JS executes one task at a time (main thread).
 
-Multi-threaded: Multiple tasks run in parallel (not native in JS, but possible with Web Workers).
-🔹 What is a Web Worker?
-A Web Worker lets you run JavaScript in a separate background thread, so your main thread (UI) doesn’t freeze or lag when doing heavy tasks.
+Multi-threaded: True parallel execution using Web Workers (in browsers).
 
-✅ Use Web Workers for CPU-intensive tasks, like:
-large loops, image processing, file parsing, etc.
+🔹 Web Workers:
+Run JS in background thread, avoids UI freezing.
+Used for:
 
+CPU-heavy tasks (loops, image processing, parsing)
 
+✅ 2. Async in JS (Promises, async/await, setTimeout)
+Used to handle non-blocking tasks:
 
+Network requests
 
- Async (Promises, async/await, setTimeout)
-  Use Cases:
-  CPU-heavy tasks (math calculations, sorting)
-  Image/video processing
-  Data parsing (CSV/JSON)
-  Long loops or algorithms
-  Background timers or polling
+Background timers
 
+Large calculations (if with Web Worker)
 
+File reading/parsing (CSV/JSON)
 
-2.  What is a Thread?
+✅ 3. What is a Thread?
 A thread is a path of execution.
 
-JS uses one main thread (single-threaded).
-You can use Web Workers for background threads.
+JS uses one main thread.
 
-3.  Horizontal vs Vertical Scaling
-Vertical Scaling: Increase power (CPU/RAM) of one server.
+Web Workers create extra threads for heavy tasks.
 
-Horizontal Scaling: Add more servers (scale out).
-In Node.js, use clustering, PM2, or load balancers for scaling.
+✅ 4. Horizontal vs Vertical Scaling
+Type	Meaning
+Vertical	Upgrade one server's CPU/RAM
+Horizontal	Add more servers (Node.js: clustering, PM2, load balancing)
 
-4.  Latency vs Throughput
+✅ 5. Latency vs Throughput
 Term	Meaning
-Latency	Time to complete one request (ms)
-Throughput	Requests handled per second
+Latency	Time to handle one request
+Throughput	Total requests handled per second
 
-5.  JS: Compiled or Interpreted?
-JS is both:
-
+✅ 6. JS: Compiled or Interpreted?
 Originally interpreted
 
-Now uses JIT compilation (via engines like V8)
+Now uses JIT (Just-In-Time) compilation via engines like V8
 
-6.  JS: Synchronous or Asynchronous?
+✅ 7. JS: Sync or Async?
 JS is synchronous by default
 
 Becomes asynchronous using:
-setTimeout, fetch, Promises, async/await
-Handled via event loop
 
+setTimeout, fetch, Promise, async/await
 
+Managed by the Event Loop
 
+🔁 Difference: Sync vs Async vs Multithreading
+Concept	Parallel?	Blocking?	JS Example
+Synchronous	❌ No	✅ Yes	Regular code
+Asynchronous	✅ Looks like	❌ No	setTimeout, fetch
+Multithreading	✅ Yes	❌ Depends	Web Workers
 
-🔄 Difference: Multithreading vs Synchronous vs Asynchronous
-Concept	Meaning	Can Run in Parallel?	Blocking?	JavaScript Example
-✅ Synchronous	Code runs line by line, one task at a time	❌ No	✅ Yes (blocks next line)	Regular JS code
-✅ Asynchronous	Code starts a task, doesn't wait for it to finish, continues ahead	✅ "Looks" parallel (via event loop)	❌ No	setTimeout, fetch, async/await
-✅ Multithreading	True parallelism: multiple threads work at the same time	✅ Yes	❌ Depends	Web Workers in JS
+🔹 JavaScript Hoisting
+Hoisting: JS moves declarations to top of scope.
 
+Only works for:
 
+var (value = undefined)
 
+Function declarations
 
-🔹 1. Hoisting in JavaScript
-✅ Definition:
-Hoisting is JavaScript's default behavior of moving declarations to the top of their scope before code is executed.
+🔹 Temporal Dead Zone (TDZ)
+Applies to let and const
 
+Accessing before initialization = ❌ ReferenceError
 
-console.log(x); // undefined
-var x = 5;
-👉 JavaScript internally does this:
+js
+Copy
+Edit
+console.log(x); // ❌
+let x = 10;
+🔹 Arrow Functions
+Shorter syntax using =>
 
+No own this, arguments, or super
 
-var x;
-console.log(x); // undefined
-x = 5;
+Lexically bound this
 
-📌 Hoisted:
-✅ var (value = undefined)
-
-✅ Function declarations
-
-❌ let and const (they are hoisted but uninitialized — see TDZ below)
-
-🔹 2. Temporal Dead Zone (TDZ)
-✅ Definition:
-TDZ is the time between hoisting of a variable declared with let or const and its actual declaration, where the variable exists but is not accessible.
-
-🔧 Example:
-
-console.log(a); // ❌ ReferenceError
-let a = 10;
-👉 In memory: a is hoisted but not initialized, so accessing it before line 2 causes an error.
-
-🔹 3. Arrow Function
-✅ Definition:
-A shorter way to write functions using the => syntax.
-Arrow functions do not have their own this, arguments, or super.
-
-🔧 Example:
-
+js
+Copy
+Edit
 const add = (a, b) => a + b;
-
-console.log(add(2, 3)); // 5
-
-🔍 Key Differences vs normal functions:
 Feature	Arrow Function	Regular Function
-this	Lexically bound (outer this)	Dynamic this
-Syntax	Short, concise	Traditional function syntax
-Hoisting	❌ Not hoisted	✅ Hoisted (declaration only)
+this	Lexical (outer)	Dynamic (depends)
+Hoisting	❌ Not hoisted	✅ Hoisted
+Syntax	Concise	Traditional
 
-🔹 4. Unnamed Function (Anonymous Function)
-✅ Definition:
-A function without a name. Used mainly in function expressions or callbacks.
+🔹 Function Expression
+A function assigned to a variable
 
-🔧 Example:
+Not hoisted like declarations
 
-setTimeout(function() {
-  console.log("Hello");
-}, 1000);
-📌 Used in:
+Can be anonymous or named
 
-Callbacks
-
-IIFEs
-
-Function expressions
-
-🔹 5. Function Expression
-✅ Definition:
-A function assigned to a variable.
-Unlike function declarations, expressions are not hoisted.
-
-🔧 Example:
-
+js
+Copy
+Edit
 const greet = function(name) {
   return `Hello, ${name}`;
 };
+🔹 Anonymous Functions
+Functions with no name
 
-console.log(greet("Palkit")); // Hello, Palkit
-🔍 Difference from function declaration:
+Common in callbacks, IIFEs
 
-
-// Declaration (hoisted)
-function hello() { return "Hi"; }
-
-// Expression (not hoisted)
-const bye = function() { return "Bye"; };
-✅ Summary Table:
+js
+Copy
+Edit
+setTimeout(function() {
+  console.log("Hello");
+}, 1000);
+✅ Summary Table
 Concept	Description	Hoisted?
-Hoisting	Moves declarations (not initializations) to top	✅ var, functions
-TDZ	Let/const exists but can't be accessed early	❌ Causes error
-Arrow Function	Shorter function syntax, no own this	❌ Not hoisted
-Unnamed Function	Function with no name (used in expressions/callbacks)	❌ Depends
-Function Expression	Function assigned to variable	❌ Not hoisted
+Hoisting	Moves declarations (not initializations)	✅ var, fn
+TDZ	Accessing let/const before init → error	❌ Error
+Arrow Function	Short, no this/arguments	❌ Not hoisted
+Anonymous Func	Used in expressions/callbacks	❌ Depends
+Function Expr	Function assigned to a variable	❌ Not hoisted
 
+🔄 this Behavior Examples
+js
+Copy
+Edit
+function show() {
+  console.log(this); // Global (window in browser)
+}
 
+const user = {
+  name: "Palkit",
+  sayHi() {
+    console.log(this.name); // "Palkit"
+  }
+};
+
+const user2 = {
+  name: "Ravi",
+  greet: () => {
+    console.log(this.name); // undefined (arrow uses outer `this`)
+  }
+};
+
+function greet() {
+  console.log(this.name);
+}
+const person = { name: "Neha" };
+greet.call(person); // "Neha"
