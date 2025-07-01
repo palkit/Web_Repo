@@ -1,0 +1,160 @@
+1. Single-thread vs Multi-thread
+Single-threaded: One task at a time (default in JS).
+
+Multi-threaded: Multiple tasks run in parallel (not native in JS, but possible with Web Workers).
+🔹 What is a Web Worker?
+A Web Worker lets you run JavaScript in a separate background thread, so your main thread (UI) doesn’t freeze or lag when doing heavy tasks.
+
+✅ Use Web Workers for CPU-intensive tasks, like:
+large loops, image processing, file parsing, etc.
+
+
+
+
+ Async (Promises, async/await, setTimeout)
+  Use Cases:
+  CPU-heavy tasks (math calculations, sorting)
+  Image/video processing
+  Data parsing (CSV/JSON)
+  Long loops or algorithms
+  Background timers or polling
+
+
+
+2.  What is a Thread?
+A thread is a path of execution.
+
+JS uses one main thread (single-threaded).
+You can use Web Workers for background threads.
+
+3.  Horizontal vs Vertical Scaling
+Vertical Scaling: Increase power (CPU/RAM) of one server.
+
+Horizontal Scaling: Add more servers (scale out).
+In Node.js, use clustering, PM2, or load balancers for scaling.
+
+4.  Latency vs Throughput
+Term	Meaning
+Latency	Time to complete one request (ms)
+Throughput	Requests handled per second
+
+5.  JS: Compiled or Interpreted?
+JS is both:
+
+Originally interpreted
+
+Now uses JIT compilation (via engines like V8)
+
+6.  JS: Synchronous or Asynchronous?
+JS is synchronous by default
+
+Becomes asynchronous using:
+setTimeout, fetch, Promises, async/await
+Handled via event loop
+
+
+
+
+🔄 Difference: Multithreading vs Synchronous vs Asynchronous
+Concept	Meaning	Can Run in Parallel?	Blocking?	JavaScript Example
+✅ Synchronous	Code runs line by line, one task at a time	❌ No	✅ Yes (blocks next line)	Regular JS code
+✅ Asynchronous	Code starts a task, doesn't wait for it to finish, continues ahead	✅ "Looks" parallel (via event loop)	❌ No	setTimeout, fetch, async/await
+✅ Multithreading	True parallelism: multiple threads work at the same time	✅ Yes	❌ Depends	Web Workers in JS
+
+
+
+
+🔹 1. Hoisting in JavaScript
+✅ Definition:
+Hoisting is JavaScript's default behavior of moving declarations to the top of their scope before code is executed.
+
+
+console.log(x); // undefined
+var x = 5;
+👉 JavaScript internally does this:
+
+
+var x;
+console.log(x); // undefined
+x = 5;
+
+📌 Hoisted:
+✅ var (value = undefined)
+
+✅ Function declarations
+
+❌ let and const (they are hoisted but uninitialized — see TDZ below)
+
+🔹 2. Temporal Dead Zone (TDZ)
+✅ Definition:
+TDZ is the time between hoisting of a variable declared with let or const and its actual declaration, where the variable exists but is not accessible.
+
+🔧 Example:
+
+console.log(a); // ❌ ReferenceError
+let a = 10;
+👉 In memory: a is hoisted but not initialized, so accessing it before line 2 causes an error.
+
+🔹 3. Arrow Function
+✅ Definition:
+A shorter way to write functions using the => syntax.
+Arrow functions do not have their own this, arguments, or super.
+
+🔧 Example:
+
+const add = (a, b) => a + b;
+
+console.log(add(2, 3)); // 5
+
+🔍 Key Differences vs normal functions:
+Feature	Arrow Function	Regular Function
+this	Lexically bound (outer this)	Dynamic this
+Syntax	Short, concise	Traditional function syntax
+Hoisting	❌ Not hoisted	✅ Hoisted (declaration only)
+
+🔹 4. Unnamed Function (Anonymous Function)
+✅ Definition:
+A function without a name. Used mainly in function expressions or callbacks.
+
+🔧 Example:
+
+setTimeout(function() {
+  console.log("Hello");
+}, 1000);
+📌 Used in:
+
+Callbacks
+
+IIFEs
+
+Function expressions
+
+🔹 5. Function Expression
+✅ Definition:
+A function assigned to a variable.
+Unlike function declarations, expressions are not hoisted.
+
+🔧 Example:
+
+const greet = function(name) {
+  return `Hello, ${name}`;
+};
+
+console.log(greet("Palkit")); // Hello, Palkit
+🔍 Difference from function declaration:
+
+
+// Declaration (hoisted)
+function hello() { return "Hi"; }
+
+// Expression (not hoisted)
+const bye = function() { return "Bye"; };
+✅ Summary Table:
+Concept	Description	Hoisted?
+Hoisting	Moves declarations (not initializations) to top	✅ var, functions
+TDZ	Let/const exists but can't be accessed early	❌ Causes error
+Arrow Function	Shorter function syntax, no own this	❌ Not hoisted
+Unnamed Function	Function with no name (used in expressions/callbacks)	❌ Depends
+Function Expression	Function assigned to variable	❌ Not hoisted
+
+
