@@ -9,7 +9,7 @@ function grandparent(){
 
         function child(){
             var c=500;
-            console.log(c);
+            console.log(c)
         }
         child();
     }
