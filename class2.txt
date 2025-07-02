@@ -1,0 +1,36 @@
+HOFs
+A function that takes another function as argument OR returns a function.
+
+
+- Examples (Built-in)
+Function	Purpose
+map()	Transform each array element
+filter()	Keep elements based on condition
+reduce()	Accumulate values
+setTimeout()	Delay execution (uses callback)
+addEventListener()	Respond to events
+
+🔄 Array operations (map, filter)
+
+🔂 Loop-less logic
+
+📦 Function factories
+
+🛡️ Middleware (e.g. Express.js)
+
+⏱️ Async tasks (setTimeout, Promises)
+
+🖱️ Event handling
+
+
+ - Why Use HOFs?
+ - Code Reuse
+
+ - Clean, declarative code
+
+ - Powerful with closures
+
+ - Core of functional programming
+
+ - One-Line Definition to Remember:
+“A function that works with functions — either takes or returns a function.”

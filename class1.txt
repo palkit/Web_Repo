@@ -151,3 +151,24 @@ function greet() {
 }
 const person = { name: "Neha" };
 greet.call(person); // "Neha"
+
+
+
+
+Final Closure Recap
+Closure is:
+➤ Function + Its outer scope (preserved in Heap)
+
+Why Closure works:
+➤ Because inner function still has reference to outer variable, JavaScript's engine keeps it in memory (heap)
+
+JavaScript Engine handles:
+➤ Stack for execution
+➤ Heap for variable/closure storage
+➤ Garbage Collection to remove unused variables
+
+👇 Ask Yourself These to Spot Closure:
+❓ Question	✅ If Yes...
+Is function returned from another function?	➤ Closure!
+Is function using variable from parent?	➤ Closure!
+Is that parent function already done?	➤ Closure!
