@@ -1,0 +1,52 @@
+A callback is a function passed as an argument to another function, to be executed later.
+
+Used for asynchronous operations (like setTimeout, API calls, file reading).
+
+Helps to define what should happen after a task completes.
+
+🔹 Example:
+js
+Copy
+Edit
+function greet(name, cb) {
+  console.log("Hi", name);
+  cb(); // callback after greeting
+}
+
+greet("Ravi", () => {
+  console.log("Welcome!");
+});
+😵‍💫 Callback Hell – Short Notes
+Callback Hell is when many nested callbacks make code:
+
+Hard to read
+
+Hard to maintain
+
+Error-prone
+
+🔹 Structure:
+js
+Copy
+Edit
+task1(() => {
+  task2(() => {
+    task3(() => {
+      task4(() => {
+        // 😵 messy!
+      });
+    });
+  });
+});
+🔹 Looks like a pyramid (right-slant):
+markdown
+Copy
+Edit
+task1
+ └─ task2
+     └─ task3
+         └─ task4
+🛠️ How to Avoid Callback Hell?
+Use Promises
+
+Use Async/Await
