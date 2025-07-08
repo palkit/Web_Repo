@@ -1,0 +1,17 @@
+ Promise.all
+Waits for all promises to succeed.
+
+If any one fails, it rejects.
+
+ Promise.allSettled
+Waits for all promises to finish.
+
+Returns result of each, whether fulfilled or rejected.
+
+ Promise.race
+Returns result of the first promise to finish (resolve or reject).
+
+ Promise.any
+Returns the first fulfilled promise.
+
+If all fail, it rejects with an error.
