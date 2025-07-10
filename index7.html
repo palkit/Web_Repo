@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Debounce Example</title>
+  </head>
+  <body>
+    <input type="text" id="searchInput" placeholder="Type something..." />
+
+    <script>
+      let timeoutId; // holds the current timeout
+
+      const input = document.getElementById("searchInput");
+
+      input.addEventListener("input", function () {
+        clearTimeout(timeoutId);
+        function timer() {
+          timeoutId = setTimeout(() => {
+            console.log("User finished typing:", input.value);
+          }, 500);
+        }
+        timer();
+      });
+    </script>
+  </body>
+</html>
