@@ -8,12 +8,49 @@
 </head>
 <body>
   <header>
-    <h1>📰 Scroll Blog</h1>
+    <nav>
+      <ul class="navbar">
+        <li><a href="#" onclick="showSection('home')">Home</a></li>
+        <li><a href="#" onclick="showSection('blog')">Blog</a></li>
+        <li><a href="#" onclick="showSection('admin')">Admin</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="blogContainer" class="blog-container"></main>
+  <section id="home" class="view-section">
+    <h1>Welcome to the Infinite Scroll Blog 📰</h1>
+    <p>Explore, read, and enjoy!</p>
+  </section>
 
-  <div id="loader">Loading more posts...</div>
+  <section id="blog" class="view-section" style="display:none;">
+    <div class="search-filter">
+      <input type="text" id="searchInput" placeholder="Search by title...">
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="Tech">Tech</option>
+        <option value="News">News</option>
+        <option value="Life">Life</option>
+      </select>
+    </div>
+    <main id="blogContainer" class="blog-container"></main>
+    <div id="loader">Loading more posts...</div>
+  </section>
+
+  <section id="admin" class="view-section" style="display:none;">
+    <h2>Create a New Blog Post</h2>
+    <form id="blogForm">
+      <input type="text" id="title" placeholder="Title" required>
+      <input type="text" id="image" placeholder="Image URL" required>
+      <textarea id="content" placeholder="Description" required></textarea>
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="Tech">Tech</option>
+        <option value="News">News</option>
+        <option value="Life">Life</option>
+      </select>
+      <button type="submit">Submit Post</button>
+    </form>
+  </section>
 
   <footer>
     <p>Footer</p>

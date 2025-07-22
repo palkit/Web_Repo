@@ -13,7 +13,23 @@ body {
 header {
   background: #222;
   color: white;
-  text-align: center;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.view-section {
   padding: 20px;
 }
 
@@ -59,10 +75,39 @@ header {
   display: none;
 }
 
-footer {
+.search-filter {
+  display: flex;
+  gap: 10px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
+#searchInput, #categoryFilter {
+  padding: 10px;
+  font-size: 14px;
+}
+
+#blogForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+#blogForm input,
+#blogForm textarea,
+#blogForm select {
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+#blogForm button {
+  padding: 10px;
+  font-size: 16px;
   background: #222;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  margin-top: 30px;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
