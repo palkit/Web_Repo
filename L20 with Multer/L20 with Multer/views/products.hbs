@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title> THIS IS MY HOME PAGE</title>
+  </head>
+  <body>
+    {{> navbar }}
+    <h1>PRODUCTS:</h1>
+
+    <ul class="people_list">
+      {{#each products}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </body>
+</html>

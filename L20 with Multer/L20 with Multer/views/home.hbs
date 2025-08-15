@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>THIS IS MY HOME PAGE</title>
+    </head>
+    <body>
+        {{> navbar }}
+        <p>{{firstname}} {{lastname}}</p>
+
+        <h2>Upload a File</h2>
+        {{#if error}}
+            <p style="color:red;">{{error}}</p>
+        {{/if}}
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        {{#if filePath}}
+            <h3>Uploaded File: {{fileName}}</h3>
+            <p>Path: <a href="{{filePath}}" target="_blank">{{filePath}}</a></p>
+            
+            <img src="{{filePath}}" alt="Uploaded file" style="max-width:300px;margin-top:10px;">
+        {{/if}}
+    </body>
+</html>
